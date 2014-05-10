@@ -18,7 +18,7 @@ SMSSync-JServer can: <br>
 -send SMSs back using the batch feature available in SMSSync gateway app<br>
 </p>
 <p>
-Feel free to:
+Feel free to: <br>
 -use<br>
 -fork<br>
 -copy<br>
