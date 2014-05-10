@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--$Id: log4j.xml,v 1.4 2011/03/11 08:57:00 a0346 Exp $-->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- Appenders -->
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %C - ligne %L - %c - %p -{ %m }-%n"/>
+		</layout>
+	</appender>
+	<appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+	    <param name="File" value="/tmp/webconnector.log"/>
+	    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+	    <param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %C - ligne %L - %c - %p -{ %m }-%n"/>
+		</layout>
+	</appender>
+	<appender name="fileDevelopmentAppender" class="org.apache.log4j.FileAppender">
+	    <param name="File" value="/tmp/development.log"/>
+	    <param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m %n"/>
+		</layout>
+	</appender>
+	
+	<!-- Loggers -->
+	<logger name="com.africasys.ushahidi">
+		<level value="debug" />
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	
+	<logger name="org.springframework">
+		<level value="warn" />
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	
+	<!--root logger -->
+	<root>
+		<level value="debug"/>
+		<appender-ref ref="fileAppender"/>
+		<appender-ref ref="consoleAppender" />
+	</root>
+</log4j:configuration>

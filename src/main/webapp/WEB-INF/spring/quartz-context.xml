@@ -1,0 +1,79 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!--
+		#################################################################################
+		##QUARTZ CONFIGURATION FILE
+		#################################################################################
+	-->
+	
+	<!--
+		#################################################################################
+		##TASKS CLASSES (A task is a unique operation. Ex:generate bills pdf files per client)
+		#################################################################################
+	-->
+	
+	<bean id="ushahidiTask" class="com.africasys.ushahidi.webconnector.batch.task.UshahidiTask" />
+
+	<!--
+		#################################################################################
+		##JOB CLASSES (A Job executes many tasks. Ex: MinuteJob, FiveMinuteJob ...)
+		#################################################################################
+	-->
+	<bean name="fiveMinuteJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.africasys.ushahidi.webconnector.batch.job.FiveMinuteJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="ushahidiTask" value-ref="ushahidiTask" />
+			</map>
+		</property>
+	</bean>
+
+	<bean name="minuteJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.africasys.ushahidi.webconnector.batch.job.MinuteJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="ushahidiTask" value-ref="ushahidiTask" />
+			</map>
+		</property>
+	</bean>
+	<!--
+		#################################################################################
+		##QUARTZ TRIGGERS (A trigger is the time flag that permit to launch Jobs)
+		#################################################################################
+	-->
+	
+	<!-- Simple Trigger, run every 3600 seconds -->
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+<!-- 		<property name="jobDetail" ref="minuteJob" /> -->
+		<!-- 		 mili seconds here -->
+<!-- 		<property name="repeatInterval" value="1300000" /> -->
+<!-- 		<property name="startDelay" value="10000" /> -->
+	</bean>
+
+	<!-- Cron Trigger, run the 1st day of every month at 2h00 AM -->
+	<!-- 	http://cronmaker.com/ -->
+ 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="minuteJob" />
+		<property name="cronExpression" value="0 0 0/12 1/1 * ? *" />
+		<!--  0 0/5 * 1/1 * ? *  5mns-->
+		<!--  	0 0 0/12 1/1 * ? * 12h -->
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="minuteJob" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

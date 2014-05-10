@@ -1,0 +1,8 @@
+Message
+MessageAutoReply
+MessageSendSMS
+Response
+SyncSimpleResponse
+SyncSMSAutoReply
+SyncSMSResponse
+SyncSMSSendResponse
