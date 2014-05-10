@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.africasys.ushahidi.webconnector.smssync;
+package com.africasys.ushahidi.smssync.jserver.json;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.africasys.ushahidi.webconnector.model.SMS;
+import com.africasys.ushahidi.smssync.jserver.model.SMS;
 
 
 /**
@@ -15,20 +15,20 @@ import com.africasys.ushahidi.webconnector.model.SMS;
  *
  */
 @Component
-public class MessageAutoReply {
+public class MessageSendSMS {
 
-	private String success;
 	private String task;
+	private String secret;
 	private List<SMS> messages;
 	
 	
-	public MessageAutoReply() {
+	public MessageSendSMS() {
 	}
 
-	public MessageAutoReply(String success, String task) {
+	public MessageSendSMS(String task, String secret) {
 		super();
-		this.success = success;
 		this.task = task;
+		this.secret = secret;
 	}
 
 	public String getTask() {
@@ -47,13 +47,11 @@ public class MessageAutoReply {
 		this.messages = messages;
 	}
 
-	public String getSuccess() {
-		return success;
+	public String getSecret() {
+		return secret;
 	}
 
-	public void setSuccess(String success) {
-		this.success = success;
+	public void setSecret(String secret) {
+		this.secret = secret;
 	}
-
-	
 }

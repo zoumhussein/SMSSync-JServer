@@ -1,4 +1,4 @@
-package com.africasys.ushahidi.webconnector.controller;
+package com.africasys.ushahidi.smssync.jserver.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

@@ -11,7 +11,7 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
-		<config>src/main/webapp/WEB-INF/spring/quartz-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/mvc2-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

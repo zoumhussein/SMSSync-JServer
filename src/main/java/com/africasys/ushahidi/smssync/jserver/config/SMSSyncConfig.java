@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.africasys.ushahidi.webconnector.config;
+package com.africasys.ushahidi.smssync.jserver.config;
 
 import org.springframework.stereotype.Component;
 

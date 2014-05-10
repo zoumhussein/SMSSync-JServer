@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.africasys.ushahidi.webconnector.smssync;
+package com.africasys.ushahidi.smssync.jserver.json;
 
 import org.springframework.stereotype.Component;
 

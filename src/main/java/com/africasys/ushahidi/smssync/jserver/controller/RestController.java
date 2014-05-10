@@ -1,5 +1,6 @@
-package com.africasys.ushahidi.webconnector.controller;
+package com.africasys.ushahidi.smssync.jserver.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,21 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.africasys.ushahidi.webconnector.config.SMSSyncConfig;
-import com.africasys.ushahidi.webconnector.config.TrackerConfig;
-import com.africasys.ushahidi.webconnector.model.SMS;
-import com.africasys.ushahidi.webconnector.model.TrackerSMS;
-import com.africasys.ushahidi.webconnector.sms.SMSMngt;
-import com.africasys.ushahidi.webconnector.utils.ApplicationConstantes;
-import com.africasys.ushahidi.webconnector.utils.ConfigHelper;
-import com.africasys.ushahidi.webconnector.utils.SMSParserHelper;
-import com.africasys.ushahidi.webconnector.utils.SyncHelper;
+import com.africasys.ushahidi.smssync.jserver.config.SMSSyncConfig;
+import com.africasys.ushahidi.smssync.jserver.model.SMS;
+import com.africasys.ushahidi.smssync.jserver.utils.ApplicationConstantes;
+import com.africasys.ushahidi.smssync.jserver.utils.ConfigHelper;
+import com.africasys.ushahidi.smssync.jserver.utils.SyncHelper;
 
 /**
  * @author Zoumana TRAORE
@@ -63,26 +59,12 @@ public class RestController {
 			return SyncHelper.responseError(ApplicationConstantes.ERROR_SMSSYNC_BAD_SECRET);
 		}
 
-		TrackerSMS trackerSMS = SMSParserHelper.parseTracerSMS(message);
-		
-		//Not a tracker SMS, so we reply OK so the SMS gateway never re-send it back
-		if(trackerSMS == null){
-			LOGGER.warn("Not a TrackerSMS");
-			return SyncHelper.responseSuccess();
-		}
-		success = smsMngt.processTracerSMS(trackerSMS, from, sentTo, message, sentTimestamp);
-		TrackerConfig trackerConfig = ConfigHelper.getTrackerConfig();
-		
+		//Do your work here
 		if(!success){
 			returnObj = SyncHelper.responseError(ApplicationConstantes.ERROR_DURING_REPORT_CREATION);
 		}else{
-			
-			//we need to reply to the GPS tracker so i can stop sending again
-			if(trackerConfig.isTracerStopReply()){
 				returnObj = SyncHelper.responseSuccessWithMessage(from);
-			}else{
-				returnObj = SyncHelper.responseSuccess();	
-			}
+//				returnObj = SyncHelper.responseSuccess();	
 		}
 		LOGGER.debug("receiveSMS end with messageId="+messageId);
 		return returnObj;
@@ -99,7 +81,8 @@ public class RestController {
 	@ResponseBody
 	public Object sendSMS(HttpServletRequest request, HttpServletResponse response) {
 		LOGGER.debug("sendSMS begin");
-		List<SMS> messages = smsMngt.mockRetrieveSMSToSend();
+		List<SMS> messages = new ArrayList<SMS>();
+		//Do your work here
 		LOGGER.debug("receiveSMS end with number of SMS sent="+messages.size());
 		return SyncHelper.sendSMSThroughGateway(messages);
 	}

@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.africasys.ushahidi.webconnector.smssync;
+package com.africasys.ushahidi.smssync.jserver.json;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.africasys.ushahidi.webconnector.model.SMS;
+import com.africasys.ushahidi.smssync.jserver.model.SMS;
 
 
 /**

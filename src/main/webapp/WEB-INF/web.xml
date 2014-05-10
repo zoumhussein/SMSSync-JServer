@@ -8,8 +8,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		    /WEB-INF/spring/root-context.xml
-<!-- 		    /WEB-INF/spring/appServlet/mvc2-context.xml -->
-		    /WEB-INF/spring/quartz-context.xml
 		 </param-value>
 	</context-param>
 	
