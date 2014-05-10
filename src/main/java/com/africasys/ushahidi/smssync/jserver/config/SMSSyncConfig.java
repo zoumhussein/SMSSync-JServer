@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SMSSyncConfig {
-	
+
 	private String from;
 	private String message;
 	private String messageId;
@@ -19,7 +19,7 @@ public class SMSSyncConfig {
 	private String secret;
 	private String time;
 	private String task;
-	
+
 	public SMSSyncConfig() {
 	}
 

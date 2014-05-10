@@ -5,7 +5,6 @@ package com.africasys.ushahidi.smssync.jserver.json;
 
 import org.springframework.stereotype.Component;
 
-
 /**
  * @author Zoumana TRAORE
  *
@@ -15,10 +14,10 @@ public class Response {
 
 	private String success;
 	private String error;
-	
-	public Response(){
+
+	public Response() {
 	}
-	
+
 	public Response(String success, String error) {
 		super();
 		this.success = success;

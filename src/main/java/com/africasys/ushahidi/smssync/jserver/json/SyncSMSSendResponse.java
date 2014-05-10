@@ -13,9 +13,10 @@ import org.springframework.stereotype.Component;
 public class SyncSMSSendResponse {
 
 	private MessageSendSMS payload;
-	
-	public SyncSMSSendResponse(){};
-	
+
+	public SyncSMSSendResponse() {
+	};
+
 	public SyncSMSSendResponse(MessageSendSMS payload) {
 		super();
 		this.payload = payload;
@@ -28,5 +29,5 @@ public class SyncSMSSendResponse {
 	public void setPayload(MessageSendSMS payload) {
 		this.payload = payload;
 	}
-	
+
 }

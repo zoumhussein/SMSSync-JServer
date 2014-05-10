@@ -13,9 +13,10 @@ import org.springframework.stereotype.Component;
 public class SyncSMSAutoReply {
 
 	private MessageAutoReply payload;
-	
-	public SyncSMSAutoReply(){};
-	
+
+	public SyncSMSAutoReply() {
+	};
+
 	public SyncSMSAutoReply(MessageAutoReply payload) {
 		super();
 		this.payload = payload;
@@ -28,5 +29,5 @@ public class SyncSMSAutoReply {
 	public void setPayload(MessageAutoReply payload) {
 		this.payload = payload;
 	}
-	
+
 }

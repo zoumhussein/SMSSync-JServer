@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationConstantes {
 
-	
 	/**
-	 *Configuration keys 
+	 * Configuration keys
 	 */
 	public static final String USHAHIDI_URL_KEY = "ushURL";
 	public static final String USHAHIDI_LOGIN_KEY = "ushLogin";
@@ -38,10 +37,8 @@ public class ApplicationConstantes {
 	public static final String SMSSYNC_TIME_KEY = "syncTime";
 	public static final String SMSSYNC_TASK_KEY = "syncTask";
 
-	
 	public static final String SUPPORT_EMAIL_KEY = "supportEmail";
 
-	
 	/**
 	 * errors
 	 */

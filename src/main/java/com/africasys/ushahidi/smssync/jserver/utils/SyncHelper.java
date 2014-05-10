@@ -24,60 +24,60 @@ import com.africasys.ushahidi.smssync.jserver.model.SMS;
  */
 @Component
 public class SyncHelper {
-	
+
 	/**
 	 * response success to SMSSync
 	 * 
 	 * @return SyncSimpleResponse
 	 */
-	public static SyncSimpleResponse responseSuccess(){
+	public static SyncSimpleResponse responseSuccess() {
 		return new SyncSimpleResponse(new Response("true", null));
 
 	}
-	
+
 	/**
 	 * response error to SMSSync
 	 * 
 	 * @return SyncSimpleResponse
 	 */
-	public static SyncSimpleResponse responseError(String errorMessage){
+	public static SyncSimpleResponse responseError(String errorMessage) {
 		return new SyncSimpleResponse(new Response("false", errorMessage));
 	}
-	
+
 	/**
 	 * send SMS through SMSSync gateway
 	 * 
 	 * @return
 	 */
-	public static SyncSMSSendResponse sendSMSThroughGateway(List<SMS> messages){
+	public static SyncSMSSendResponse sendSMSThroughGateway(List<SMS> messages) {
 		SMSSyncConfig config = ConfigHelper.getSMSSyncConfig();
-		MessageSendSMS messageRes = new MessageSendSMS("send", config.getSecret());
+		MessageSendSMS messageRes = new MessageSendSMS("send",
+				config.getSecret());
 		messageRes.setMessages(messages);
 		return new SyncSMSSendResponse(messageRes);
 	}
-	
+
 	/**
 	 * check the SMSSYnc Server secret password
 	 * 
 	 * @param secret
 	 * @return
 	 */
-	public static boolean isSMSSyncAuthentified(String secret){
+	public static boolean isSMSSyncAuthentified(String secret) {
 
 		SMSSyncConfig config = ConfigHelper.getSMSSyncConfig();
-		if(StringUtils.equals(secret, config.getSecret())){
+		if (StringUtils.equals(secret, config.getSecret())) {
 			return true;
 		}
 		return false;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param to
 	 * @return
 	 */
-	public static SyncSMSAutoReply responseSuccessWithMessage(String to){
+	public static SyncSMSAutoReply responseSuccessWithMessage(String to) {
 		SyncSMSAutoReply smsResponse = new SyncSMSAutoReply();
 		MessageAutoReply autoReply = new MessageAutoReply("true", "send");
 		List<SMS> messages = new ArrayList<SMS>();
@@ -86,5 +86,5 @@ public class SyncHelper {
 		smsResponse.setPayload(autoReply);
 		return smsResponse;
 	}
-	
+
 }

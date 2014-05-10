@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.africasys.ushahidi.smssync.jserver.model.SMS;
 
-
 /**
  * @author Zoumana TRAORE
  *
@@ -20,8 +19,7 @@ public class MessageAutoReply {
 	private String success;
 	private String task;
 	private List<SMS> messages;
-	
-	
+
 	public MessageAutoReply() {
 	}
 
@@ -55,5 +53,4 @@ public class MessageAutoReply {
 		this.success = success;
 	}
 
-	
 }
